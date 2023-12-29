@@ -214,7 +214,7 @@ class DrmIon:
                 elif item.ion_annotations[0].text in ["com.amazon.drm.EncryptedPage@1.0", "com.amazon.drm.EncryptedPage@2.0"]:
                     decompress = False
                     decrypt = True
-                    if item["cipher_text"].ion_annotations[0].text == "com.amazon.drm.Compressed@1.0":
+                    if item["cipher_text"].ion_annotations and item["cipher_text"].ion_annotations[0].text == "com.amazon.drm.Compressed@1.0":
                         decompress = True
                     ct = item["cipher_text"]
                     civ = item["cipher_iv"]
