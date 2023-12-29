@@ -223,6 +223,8 @@ def download_ebook(auth: "kindle.Authenticator",
         kfx_book.getFile(fn_dec)
         pathlib.Path(fn).unlink()
         pathlib.Path(fn_dec).rename(fn)
+        
+     return fn
 
 
 def download_pdoc(auth: "kindle.Authenticator", asin: str) -> None:
