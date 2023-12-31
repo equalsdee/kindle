@@ -50,7 +50,7 @@ def get_library(auth: "kindle.Authenticator",
         params["last_sync_time"] = last_sync
 
     with httpx.Client(auth=auth) as session:
-        r = session.get(url, params=params)
+        r = session.get(url, params=params, timeout=120)
         r.raise_for_status()
         library = xmltodict.parse(r.text)
         library = json.loads(json.dumps(library))
