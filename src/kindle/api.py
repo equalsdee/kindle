@@ -224,7 +224,7 @@ def download_ebook(auth: "kindle.Authenticator",
         pathlib.Path(fn).unlink()
         pathlib.Path(fn_dec).rename(fn)
         
-     return fn
+    return fn
 
 
 def download_pdoc(auth: "kindle.Authenticator", asin: str) -> None:
