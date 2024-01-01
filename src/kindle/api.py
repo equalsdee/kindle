@@ -115,7 +115,8 @@ Request = namedtuple("Request", ["method", "url", "fn", "headers"])
 def download_ebook(auth: "kindle.Authenticator",
                    manifest: Dict,
                    scope: Union[str, Scope] = Scope.DEFERRED,
-                   decrypt: bool = False):
+                   decrypt: bool = False,
+                   exclude_annotations: bool = False):
     """proof-of-concent, quick and dirty.
     
     Download content and create a kfx-zip file in the current working dir. 
@@ -176,6 +177,8 @@ def download_ebook(auth: "kindle.Authenticator",
         elif resource["type"] == "KINDLE_MAIN_ATTACHABLE":
             fn = resource["id"] + ".azw.res"
         elif resource["type"] == "KINDLE_USER_ANOT":
+            if exclude_annotations:
+                continue
             fn = manifest["content"]["id"] + "_EBOK.mbpV2"
 
         parts.append(
