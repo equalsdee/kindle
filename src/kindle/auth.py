@@ -408,7 +408,7 @@ class Authenticator(httpx.Auth):
                                private_key=self.device_private_key)
 
         request.headers.update(headers)
-        logger.info("signing auth flow applied to request")
+        logger.debug("signing auth flow applied to request")
 
     def _apply_bearer_auth_flow(self, request: httpx.Request) -> None:
         if self.access_token_expired:
@@ -419,7 +419,7 @@ class Authenticator(httpx.Auth):
             "client-id": "0"
         }
         request.headers.update(headers)
-        logger.info("bearer auth flow applied to request")
+        logger.debug("bearer auth flow applied to request")
 
     def _apply_cookies_auth_flow(self, request: httpx.Request) -> None:
         cookies = {
@@ -428,7 +428,7 @@ class Authenticator(httpx.Auth):
         }
 
         Cookies(cookies).set_cookie_header(request)
-        logger.info("cookies auth flow applied to request")
+        logger.debug("cookies auth flow applied to request")
 
     @property
     def available_auth_modes(self) -> List:
